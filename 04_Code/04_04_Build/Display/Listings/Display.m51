@@ -1,0 +1,265 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    07/10/2021  18:54:05  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+E:\KEIL\C51\BIN\BL51.EXE .\Objects\STARTUP.obj, .\Objects\LCD.obj TO .\Objects\Display PRINT (.\Listings\Display.m51) RA
+>> MSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\STARTUP.obj (?C_STARTUP)
+  .\Objects\LCD.obj (LCD)
+  E:\KEIL\C51\LIB\C51S.LIB (?C?CLDPTR)
+
+
+LINK MAP OF MODULE:  .\Objects\Display (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0022H     UNIT         ?CO?LCD
+            CODE    0822H     001CH     UNIT         ?PR?LCD_ROUTINE?LCD
+            CODE    083EH     0019H     UNIT         ?C?LIB_CODE
+            CODE    0857H     0017H     UNIT         ?PR?LCD_WKUP?LCD
+            CODE    086EH     0013H     UNIT         ?PR?_LCD_DISPSTR?LCD
+            CODE    0881H     000DH     UNIT         ?PR?MAIN?LCD
+            CODE    088EH     000DH     UNIT         ?PR?_U1_HEX2BCD?LCD
+            CODE    089BH     000CH     UNIT         ?C_C51STARTUP
+            CODE    08A7H     000CH     UNIT         ?PR?_LCD_WRTCMD?LCD
+            CODE    08B3H     000CH     UNIT         ?PR?_LCD_WRTDATA?LCD
+            CODE    08BFH     0008H     UNIT         ?PR?LCD_INIT?LCD
+            CODE    08C7H     0005H     UNIT         ?PR?NOP?LCD
+            CODE    08CCH     0003H     UNIT         ?PR?LCD_BON?LCD
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Display (?C_STARTUP)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?LCD
+
+?PR?MAIN?LCD
+  +--> ?PR?LCD_BON?LCD
+  +--> ?PR?LCD_WKUP?LCD
+  +--> ?PR?LCD_ROUTINE?LCD
+
+?PR?LCD_BON?LCD
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/10/2021  18:54:05  PAGE 2
+
+
+  +--> ?PR?LCD_INIT?LCD
+
+?PR?LCD_WKUP?LCD
+  +--> ?PR?LCD_INIT?LCD
+  +--> ?PR?_LCD_WRTCMD?LCD
+
+?PR?_LCD_WRTCMD?LCD
+  +--> ?PR?NOP?LCD
+
+?PR?LCD_ROUTINE?LCD
+  +--> ?PR?_LCD_WRTCMD?LCD
+  +--> ?CO?LCD
+  +--> ?PR?_LCD_DISPSTR?LCD
+
+?PR?_LCD_DISPSTR?LCD
+  +--> ?PR?_LCD_WRTDATA?LCD
+
+?PR?_LCD_WRTDATA?LCD
+  +--> ?PR?NOP?LCD
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Display (?C_STARTUP)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:089BH         SEGMENT       ?C_C51STARTUP
+  I:0008H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:089EH         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:089BH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:089BH         LINE#         133
+  C:089DH         LINE#         134
+  C:089EH         LINE#         135
+  C:089FH         LINE#         136
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/10/2021  18:54:05  PAGE 3
+
+
+  C:08A1H         LINE#         185
+  C:08A4H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        LCD
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00C0H         PUBLIC        P4
+  C:08A7H         SYMBOL        _lcd_Wrtcmd
+  D:00A8H         PUBLIC        IE
+  B:00A0H.0       PUBLIC        P2_0
+  B:00A0H.1       PUBLIC        P2_1
+  C:0822H         PUBLIC        lcd_routine
+  C:086EH         PUBLIC        _lcd_dispstr
+  D:00D8H         PUBLIC        CCON
+  C:0881H         PUBLIC        main
+  D:0098H         PUBLIC        SCON
+  C:08CCH         PUBLIC        lcd_Bon
+  D:0088H         PUBLIC        TCON
+  C:0857H         PUBLIC        lcd_Wkup
+  C:08BFH         SYMBOL        lcd_init
+  C:08C7H         PUBLIC        nop
+  D:00B8H         PUBLIC        IPL
+  D:00C8H         PUBLIC        T2CON
+  C:088EH         PUBLIC        _u1_Hex2Bcd
+  C:08B3H         SYMBOL        _lcd_Wrtdata
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          MAIN
+  C:0881H         LINE#         10
+  C:0881H         LINE#         11
+  C:0881H         LINE#         12
+  C:0884H         LINE#         13
+  C:0887H         LINE#         14
+  C:088AH         LINE#         15
+  C:088DH         LINE#         16
+  -------         ENDPROC       MAIN
+  -------         PROC          LCD_BON
+  C:08CCH         LINE#         18
+  C:08CCH         LINE#         20
+  -------         ENDPROC       LCD_BON
+  -------         PROC          LCD_WKUP
+  C:0857H         LINE#         23
+  C:0857H         LINE#         25
+  C:085AH         LINE#         26
+  C:085FH         LINE#         27
+  C:0864H         LINE#         28
+  C:0869H         LINE#         29
+  -------         ENDPROC       LCD_WKUP
+  -------         PROC          NOP
+  -------         DO            
+  D:0007H         SYMBOL        u1_dly
+  -------         ENDDO         
+  C:08C7H         LINE#         33
+  C:08C7H         LINE#         35
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/10/2021  18:54:05  PAGE 4
+
+
+  C:08C9H         LINE#         36
+  C:08C9H         LINE#         37
+  C:08CBH         LINE#         38
+  C:08CBH         LINE#         39
+  -------         ENDPROC       NOP
+  -------         PROC          LCD_INIT
+  C:08BFH         LINE#         41
+  C:08BFH         LINE#         43
+  C:08C1H         LINE#         44
+  C:08C3H         LINE#         45
+  C:08C6H         LINE#         46
+  -------         ENDPROC       LCD_INIT
+  -------         PROC          _LCD_WRTCMD
+  D:0007H         SYMBOL        u1_cmd
+  C:08A7H         LINE#         48
+  C:08A7H         LINE#         49
+  C:08A9H         LINE#         50
+  C:08ABH         LINE#         51
+  C:08ADH         LINE#         52
+  C:08B0H         LINE#         53
+  C:08B2H         LINE#         54
+  -------         ENDPROC       _LCD_WRTCMD
+  -------         PROC          _LCD_WRTDATA
+  D:0007H         SYMBOL        u1_cmd
+  C:08B3H         LINE#         56
+  C:08B3H         LINE#         57
+  C:08B5H         LINE#         58
+  C:08B7H         LINE#         59
+  C:08B9H         LINE#         60
+  C:08BCH         LINE#         61
+  C:08BEH         LINE#         62
+  -------         ENDPROC       _LCD_WRTDATA
+  -------         PROC          _LCD_DISPSTR
+  D:0001H         SYMBOL        p
+  C:086EH         LINE#         65
+  C:086EH         LINE#         67
+  C:0874H         LINE#         68
+  C:0874H         LINE#         69
+  C:0877H         LINE#         70
+  C:087EH         LINE#         71
+  C:0880H         LINE#         73
+  -------         ENDPROC       _LCD_DISPSTR
+  -------         PROC          _U1_HEX2BCD
+  D:0007H         SYMBOL        u1_Hex
+  -------         DO            
+  D:0006H         SYMBOL        u1_D1
+  -------         ENDDO         
+  C:088EH         LINE#         75
+  C:088EH         LINE#         78
+  C:0890H         LINE#         80
+  C:0896H         LINE#         82
+  C:0898H         LINE#         83
+  C:0898H         LINE#         86
+  C:089AH         LINE#         87
+  -------         ENDPROC       _U1_HEX2BCD
+  -------         PROC          LCD_ROUTINE
+  C:0822H         LINE#         89
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  07/10/2021  18:54:05  PAGE 5
+
+
+  C:0822H         LINE#         90
+  C:0827H         LINE#         91
+  C:0830H         LINE#         92
+  C:0835H         LINE#         93
+  C:083CH         LINE#         94
+  -------         ENDPROC       LCD_ROUTINE
+  -------         ENDMOD        LCD
+
+  -------         MODULE        ?C?CLDPTR
+  C:083EH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_U1_HEX2BCD?LCD
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00B9H BYTE ( 9%) *
+******************************************************************************
+
+Program Size: data=9.0 xdata=0 code=210
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

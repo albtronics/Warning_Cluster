@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\eP_System.obj" 
+TO ".\Objects\WC_SAMP01" 
+PRINT(".\Listings\WC_SAMP01.m51") RAMSIZE(256) 

@@ -1,0 +1,109 @@
+C51 COMPILER V9.55   SYSTIMER                                                              06/16/2021 20:18:32 PAGE 1   
+
+
+C51 COMPILER V9.55, COMPILATION OF MODULE SYSTIMER
+OBJECT MODULE PLACED IN .\Objects\SysTimer.obj
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE ..\..\04_02_Source\System\SysTimer.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTE
+                    -XTEND PRINT(.\Listings\SysTimer.lst) TABS(2) OBJECT(.\Objects\SysTimer.obj)
+
+line level    source
+
+   1          #include "Common.h"
+   2          #include "Telltale.h"
+   3          
+   4          void Task_1(void);
+   5          void Task_2(void);
+   6          void Task_3(void);
+   7          void Event(void (*event_TBL[])(void));
+   8          
+   9          U1 u1_1Sec;
+  10          U1 u1_Port;
+  11          U1 u1_PrtSts;
+  12          U1 u1_BUF_1MS;
+  13          F1 St_Temp;
+  14          
+  15          void (*const MS10_TBL[])(void) = {&Task_1,&Task_2,&Task_3,NULL};
+  16          
+  17          int main(void)
+  18          { 
+  19   1        u1_PrtSts = (U1)0xFF;
+  20   1        u1_BUF_1MS = (U1)OFF;
+  21   1        St_Temp.Bit.b00 = ON;
+  22   1        TT_Dr_Init();
+  23   1        
+  24   1        TMOD = 0x01;
+  25   1        IE   = 0x82;
+  26   1        TL0  = 0xF0;
+  27   1        TH0  = 0xD8;
+  28   1        TR0  = 1; 
+  29   1        
+  30   1        while(1)
+  31   1        {
+  32   2          if(St_Temp.Bit.b00 == ON)
+  33   2          {
+  34   3            Event(MS10_TBL);
+  35   3            St_Temp.Bit.b00 = OFF;
+  36   3            EA = 1;
+  37   3          } 
+  38   2        }   
+  39   1      }
+  40          
+  41          void Timer0(void) interrupt 1
+  42          {
+  43   1        St_Temp.Bit.b00 = ON; 
+  44   1        TF0   = 0; 
+  45   1        TL0   = 0xF0;
+  46   1        TH0   = 0xD8;
+  47   1        EA    = 0;
+  48   1      }
+  49          
+  50          void Task_1(void)
+  51          {
+  52   1        u1_Port = P1;
+  53   1        if(u1_Port != u1_PrtSts){
+  54   2          TT_Dr_Write(P1);
+C51 COMPILER V9.55   SYSTIMER                                                              06/16/2021 20:18:32 PAGE 2   
+
+  55   2        }
+  56   1        u1_PrtSts = u1_Port;
+  57   1      }
+  58          
+  59          void Task_2(void)
+  60          {
+  61   1        u1_1Sec++;
+  62   1        if(u1_1Sec >= 100)
+  63   1        {
+  64   2        P1_0 = ~P1_0;
+  65   2        u1_1Sec = 0;
+  66   2        }     
+  67   1      }
+  68          
+  69          void Task_3(void)
+  70          {
+  71   1      
+  72   1      }
+  73          
+  74          void Event(void (*const *MS10_TBL)(void))
+  75          {
+  76   1        for(; *MS10_TBL != 0 ;){
+  77   2          (*MS10_TBL)();
+  78   2          MS10_TBL++;
+  79   2        }
+  80   1      }
+  81          
+  82          
+  83          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    131    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     17       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

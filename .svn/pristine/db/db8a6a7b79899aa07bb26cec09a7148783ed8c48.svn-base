@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\Telltale_Driver.obj" 
+TO ".\Objects\Telltale_Diver" 
+PRINT(".\Listings\Telltale_Diver.m51") RAMSIZE(256) 

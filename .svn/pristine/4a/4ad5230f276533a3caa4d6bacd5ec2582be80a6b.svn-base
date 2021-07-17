@@ -1,0 +1,6 @@
+#include <t89c51rd2.h>
+
+int main()
+{
+	return(0);
+}

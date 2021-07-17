@@ -1,0 +1,30 @@
+
+// ********************************************************
+#include <t89c51rd2.h>
+#include "System.prm"
+#include "common.h"
+// ********************************************************
+
+// ********************************************************
+void main(void)
+{
+	// One Time Initialization Code
+	SysTimer_Init();
+	while(1)
+	{
+		// Port Data Acquisition
+
+		// EVENT TABLE
+
+	}
+	
+}
+
+static void SysTimer_Init(void){
+		TR0 = OFF;
+		TL0 = U1_MIN;
+		TH0 = U1_MIN;
+
+}
+
+void Sys

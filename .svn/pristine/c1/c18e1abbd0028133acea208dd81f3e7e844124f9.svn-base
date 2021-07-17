@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\System.obj" 
+TO ".\Objects\WC_SAMP01" 
+PRINT(".\Listings\WC_SAMP01.m51") RAMSIZE(256) 

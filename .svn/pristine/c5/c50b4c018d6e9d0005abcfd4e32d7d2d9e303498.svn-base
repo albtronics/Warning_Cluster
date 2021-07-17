@@ -1,0 +1,17 @@
+#include "System.h"
+
+
+#define CRY_FRQ		(U4)12000000
+#define DIVIDER		(U1)12
+#define TIMER_MAX	(U2)65536
+
+#define TIM_FRQ		(U2)(CRY_FRQ/DIVIDER)
+#define TIM_TIK		(U4)(1/TIM_FRQ)
+
+#define DLY_1MS		(U2)(TIM_TIK/1000)
+#define DLY_REQ		(U1)20
+
+#define TIMER_DATA	(U2)((U4)(TIMER_MAX-(DLY_1MS*DLY_REQ)))
+
+#define TIMER_TL0	(U1)(TIMER_REG & 0xFF)
+#define TIMER_TH0	(U1)((TIMER_REG & 0xFF00)>>(U1)8)

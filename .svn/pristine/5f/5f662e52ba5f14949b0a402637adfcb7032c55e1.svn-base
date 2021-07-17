@@ -1,0 +1,4 @@
+void SysTimer_Run(void);
+void SysTimer_Stop(void);
+void DisableTimer0Int(void);
+void Enable_Timer0Int(void);

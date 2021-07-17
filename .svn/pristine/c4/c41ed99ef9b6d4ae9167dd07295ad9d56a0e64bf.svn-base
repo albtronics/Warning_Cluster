@@ -1,0 +1,83 @@
+#include <89c51rd2.h>
+
+typedef unsigned char U1;
+typedef unsigned short U2	;
+
+typedef union{
+		U1 u1_BYTE;
+		struct{
+				U1 b00 : 1;
+				U1 b01 : 1;
+				U1 b02 : 1;
+				U1 b03 : 1;
+				U1 b04 : 1;
+				U1 b05 : 1;
+				U1 b06 : 1;
+				U1 b07 : 1;
+				
+			}BIT;
+}F1;
+
+#define D		P2_0 	// Port Alias
+#define CLK		P2_1
+#define	OE		P2_2
+
+#define HI		1
+#define LO		0
+
+#define U1_MAX	(U1)0xFF
+#define U1_MIN	(U1)0x00
+#define TT_LN	(U1)8
+	
+
+static void TT_Dr_Init(void);
+static void TT_Dr_allTTOn(void);
+static void TT_Dr_allTTOff(void);
+static void TT_Dr_Write(void);
+
+void main(void)
+{
+	TT_Dr_Init();
+	TT_Dr_allTTOn();
+	while(1);
+	
+}
+
+static void TT_Dr_Init(void)
+{
+	D 	= HI;
+	CLK = HI;
+	OE	= LO;
+	
+}
+
+static void TT_Dr_allTTOn(void)
+{
+	U1 u1_TTdata;
+	U1 u1_MSK;
+	U1 u1_i;
+	
+	u1_MSK = 0xFF;
+	u1_TTdata = U1_MIN;
+	
+	for(u1_i=(U1)0;	u1_i < TT_LN; u1_i++){
+	
+		// D = (u1_TTdata&u1_MSK)<<u1_i;
+		D	= 0;
+		CLK	= LO;
+		CLK	= HI;
+	}
+	OE = HI;
+		
+}
+
+static void TT_Dr_allTTOff(void)
+{	
+
+}
+
+static void TT_Dr_Write(void)
+{
+	
+}
+

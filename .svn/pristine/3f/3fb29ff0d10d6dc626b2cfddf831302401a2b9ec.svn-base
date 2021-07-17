@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\LCD.obj" 
+TO ".\Objects\Display" 
+PRINT(".\Listings\Display.m51") RAMSIZE(256) 

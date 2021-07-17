@@ -1,0 +1,9 @@
+void DisableTimer0Int(){
+IE |=	
+
+}
+
+void Timer0(void){
+IE |=	
+
+}

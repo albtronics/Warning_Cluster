@@ -1,0 +1,48 @@
+// Port Alias
+
+#define     RS      P2_0
+#define     E       P2_1
+#define     u1_DAT  P0
+
+#define HI 1
+#define LO 0
+#define NULL 0
+#define OFF  (U1)0
+#define ON   (U1)1
+#define U1_MAX (U1)0xFF
+#define U1_MIN (U1)0x00
+
+#define INI    ((U1)0x38)
+#define CLR    ((U1)0x01)
+#define INC    ((U1)0x06)
+#define DEC    ((U1)0x04)
+#define CUR    ((U1)0x0E)
+#define LIN_1  ((U1)0x80)
+#define LIN_2  ((U1)0xC0)
+
+#define Hex_d1MAX   ((U1)0x63)
+
+typedef unsigned char	U1;		/*1 Byte*/
+typedef unsigned short	U2;		/*2 Byte*/	
+typedef unsigned long	U4;		/*4 Byte*/
+
+typedef signed char		S1;		/*1 Byte*/
+typedef signed short	S2;		/*2 Byte*/	
+typedef signed long		S4;		/*4 Byte*/
+
+typedef unsigned char	D1;		/*BCD Data*/
+typedef unsigned short	D2;		/*BCD Data*/
+
+typedef union{			/*Struct flag*/
+	U1 u1_BYTE;			/*BYTE*/
+	struct{
+		U1 b00 : 1;	/*Bit 0*/
+		U1 b01 : 1;	/*Bit 1*/
+		U1 b02 : 1;	/*Bit 2*/
+		U1 b03 : 1;	/*Bit 3*/
+		U1 b04 : 1;	/*Bit 4*/
+		U1 b05 : 1;	/*Bit 5*/
+		U1 b06 : 1;	/*Bit 6*/
+		U1 b07 : 1;	/*Bit 7*/
+	}Bit;
+}F1;

@@ -1,0 +1,30 @@
+C51 COMPILER V9.55   EP_SYSTEM                                                             05/31/2021 20:17:02 PAGE 1   
+
+
+C51 COMPILER V9.55, COMPILATION OF MODULE EP_SYSTEM
+OBJECT MODULE PLACED IN .\Objects\eP_System.obj
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE ..\04_02_Source\eP_System\eP_System.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECT
+                    -EXTEND PRINT(.\Listings\eP_System.lst) TABS(2) OBJECT(.\Objects\eP_System.obj)
+
+line level    source
+
+   1          #include <t89c51rd2.h>
+   2          
+   3          int main()
+   4          {
+   5   1        return(0);
+   6   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =      4    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,76 @@
+#include <89c51rd2.h>
+
+#define ON				(U1)1
+#define OFF				(U1)0
+#define u1_NoPort (U1)4
+
+#define Port_1 		(U1)1
+#define Port_1		(U1)1
+#define Port_2		(U1)1
+#define Port_3		(U1)1
+
+#define BIT0			(U1)0x01
+#define BIT1 			(U1)0x02
+#define BIT2 			(U1)0x04
+#define BIT3 			(U1)0x08
+#define BIT4 			(U1)0x10
+#define BIT5 			(U1)0x20
+#define BIT6 			(U1)0x40
+#define BIT7 			(U1)0x80
+
+typedef unsigned char U1;
+
+U1 u1_PortData[4];
+
+/*	Threshold	: AL = 0, AH = 1
+	Default		: AL = 1, AH = 0 */   
+
+
+*p = P1_0;	0F 	= 0000 1110
+			~F0	= 0000 1111
+
+
+*p ^= ~(st_TBL_PORTDEF[1].thresh);
+typedef struct{
+		U1 thresh;
+		U1 dfault;
+}PDRIN_T;
+
+const PDRIN_T st_TBL_PORTDEF[u1_MAX_PORTIN] = {
+	
+	{	(U1)0x05, (U1)0x00	},	// 0 PORT 0
+	{	(U1)0xF0, (U1)0x0F	},	// 1 PORT 1
+};	
+	
+
+int main(void)
+{
+	U1 u1_wk;
+	u1_wk = (U1)off;
+	
+	u1_wk = u1_GetPortData(Port_1, BIT0);
+	if(u1_wk == ON)
+	{
+		// Bit status to be added to TT-Driver to be written.
+	}
+	
+
+	return 0;
+}
+
+U1 u1_GetPortData(U1 u1_Port, U1 u1_Pos)
+{
+	U1 u1_work;
+	
+	u1_work = (U1)OFF;
+	if(u1_Port < u1_NoPort)
+	{
+		u1_work = u1_PortData[4]&u1_Pos;
+		if(u1_work != 0)
+		{
+			u1_work = (U1)ON;
+		}
+	}
+	return(u1_work);
+	
+}

@@ -1,0 +1,5 @@
+".\Objects\STARTUP.obj",
+".\Objects\SysTimer.obj",
+".\Objects\Telltale_Driver.obj" 
+TO ".\Objects\System" 
+PRINT(".\Listings\System.m51") RAMSIZE(256) 

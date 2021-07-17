@@ -1,0 +1,109 @@
+C51 COMPILER V9.55   TELLTALE_DRIVER                                                       06/14/2021 20:28:57 PAGE 1   
+
+
+C51 COMPILER V9.55, COMPILATION OF MODULE TELLTALE_DRIVER
+OBJECT MODULE PLACED IN .\Objects\Telltale_Driver.obj
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE Telltale_Driver.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listi
+                    -ngs\Telltale_Driver.lst) TABS(2) OBJECT(.\Objects\Telltale_Driver.obj)
+
+line level    source
+
+   1          #include <89c51rd2.h>
+   2          
+   3          typedef unsigned char U1;
+   4          typedef unsigned short U2 ;
+   5          
+   6          typedef union{
+   7              U1 u1_BYTE;
+   8              struct{
+   9                  U1 b00 : 1;
+  10                  U1 b01 : 1;
+  11                  U1 b02 : 1;
+  12                  U1 b03 : 1;
+  13                  U1 b04 : 1;
+  14                  U1 b05 : 1;
+  15                  U1 b06 : 1;
+  16                  U1 b07 : 1;
+  17                  
+  18                }BIT;
+  19          }F1;
+  20          
+  21          #define D   P2_0  // Port Alias
+  22          #define CLK   P2_1
+  23          #define OE    P2_2
+  24          
+  25          #define HI    1
+  26          #define LO    0
+  27          
+  28          #define U1_MAX  (U1)0xFF
+  29          #define U1_MIN  (U1)0x00
+  30          #define TT_LN (U1)8
+  31            
+  32          
+  33          static void TT_Dr_Init(void);
+  34          static void TT_Dr_allTTOn(void);
+  35          static void TT_Dr_allTTOff(void);
+  36          static void TT_Dr_Write(void);
+  37          
+  38          void main(void)
+  39          {
+  40   1        TT_Dr_Init();
+  41   1        TT_Dr_allTTOn();
+  42   1        while(1);
+  43   1        
+  44   1      }
+  45          
+  46          static void TT_Dr_Init(void)
+  47          {
+  48   1        D   = HI;
+  49   1        CLK = HI;
+  50   1        OE  = LO;
+  51   1        
+  52   1      }
+  53          
+  54          static void TT_Dr_allTTOn(void)
+C51 COMPILER V9.55   TELLTALE_DRIVER                                                       06/14/2021 20:28:57 PAGE 2   
+
+  55          {
+  56   1        U1 u1_TTdata;
+  57   1        U1 u1_MSK;
+  58   1        U1 u1_i;
+  59   1        
+  60   1        u1_MSK = 0xFF;
+  61   1        u1_TTdata = U1_MIN;
+  62   1        
+  63   1        for(u1_i=(U1)0; u1_i < TT_LN; u1_i++){
+  64   2        
+  65   2          // D = (u1_TTdata&u1_MSK)<<u1_i;
+  66   2          D = 0;
+  67   2          CLK = LO;
+  68   2          CLK = HI;
+  69   2        }
+  70   1        OE = HI;
+  71   1          
+  72   1      }
+  73          
+  74          static void TT_Dr_allTTOff(void)
+  75          { 
+  76   1      
+  77   1      }
+  78          
+  79          static void TT_Dr_Write(void)
+  80          {
+  81   1        
+  82   1      }
+  83          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     37    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

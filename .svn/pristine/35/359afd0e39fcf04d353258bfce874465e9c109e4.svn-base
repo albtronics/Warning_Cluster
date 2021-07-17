@@ -1,0 +1,54 @@
+
+
+typedef unsigned char	U1	// 1 BYTE
+typedef unsigned short	U2	// 2 BYTE
+typedef unsigned long	U4	// 4 BYTE
+
+typedef unsigned char	S1	
+typedef unsigned short	S2	
+typedef unsigned long	S4	
+
+typedef unsigned char	D1	// BCD Data
+typedef unsigned short	D2	// BCD Data
+typedef unsigned long	D4	// BCD Data
+
+typedef union{				// Struct Flag
+	U1_u1_BYTE0;			// BYTE
+	struct{
+			u1_BYTE : b0;	// Bit 0
+			u1_BYTE : b1;	// Bit 1
+			u1_BYTE : b2;	// Bit 2
+			u1_BYTE : b3;	// Bit 3
+			u1_BYTE : b4;	// Bit 4
+			u1_BYTE : b5;	// Bit 5
+			u1_BYTE : b6;	// Bit 6
+			u1_BYTE : b7;	// Bit 7
+	
+	}St_BYTE;
+
+}F1;
+
+#define BIT0 (U1)1
+#define BIT1 (U1)2
+#define BIT2 (U1)4
+#define BIT3 (U1)8
+#define BIT4 (U1)0x10
+#define BIT5 (U1)0x20
+#define BIT6 (U1)0x40
+#define BIT7 (U1)0x80
+
+
+#define OFF		0
+#define ON		1
+#define FALSE	0
+#define TRUE	1
+
+#define NG		0
+#define OK		1
+
+#define U1_MIN	(U1)0x00
+#define U1_MAX	(U1)0xFF
+#define U2_MIN	(U1)0x000
+#define U2_MAX	(U1)0xFFFF
+
+

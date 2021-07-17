@@ -1,0 +1,121 @@
+#include <89c51rd2.h>
+
+typedef unsigned char U1;
+typedef unsigned short U2; // MISRA C
+
+typedef union{
+		U1 u1_BYTE;
+		struct{
+				U1 b00 : 1;
+				U1 b01 : 1;
+				U1 b02 : 1;
+				U1 b03 : 1;
+				U1 b04 : 1;
+				U1 b05 : 1;
+				U1 b06 : 1;
+				U1 b07 : 1;
+				
+			}BIT;
+}F1;
+
+typedef union{
+		U2 u2_WORD;
+		struct{
+				U1 u1_BYTE0;
+				U1 u1_BYTE1;				
+			}u1_BYTE;
+		struct{
+				U2 b00 	: 1;
+				U2 b01  : 1;
+				U2 b02  : 1;
+				U2 b03  : 1;
+				U2 b04  : 1;
+				U2 b05  : 1;
+				U2 b06  : 1;
+				U2 b07  : 1;
+				U2 b08  : 1;
+				U2 b09  : 1;
+				U2 b10 	: 1;
+				U2 b11 	: 1;
+				U2 b12 	: 1;
+				U2 b13 	: 1;
+				U2 b14 	: 1;
+				U2 b15 	: 1;				
+			}u2_BIT;			
+}F1;
+
+F1.u1_BYTE.u1_BYTE0 = (U1)
+F1.u1_BYTE.u1_BYTE1 = (U1)
+
+#define OFF		0
+#define ON		1
+
+void Task_1(void);
+void Task_2(void);
+void Task_3(void);
+void Event(void(*Event_Tbl)(void));
+
+F1 St_Temp;
+
+void (*MS10_TBL[])(void) = {
+	Task_1,
+	Task_2,
+	Task_3,
+	NULL
+};
+
+int main(void)
+{
+	St_Temp.BIT.b00 = OFF;
+	
+	TMOD 	= 0x01;
+	IE		= 0x82;
+	TL0 	= 0xD8;
+	TH0		= 0xF0;
+	TR0 = 1;
+	while(1)
+	{
+		if(St_Temp.BIT.b00 == ON)
+		{
+			Event(MS10_TBL);	
+			St_Temp.BIT.b00 = OFF;
+			EA	= 1;
+		}
+	}
+}
+
+void Timer0(void) interrupt 1
+{		
+			St_Temp.BIT.b00 	=	ON;
+			TF0			= 0;
+			TL0 		= 0xD8;
+			TH0			= 0xF0;		
+			EA 			= 0;	
+}
+
+void Task_1(void){
+		
+			P1_0 = ~(P1_0);
+}
+
+void Task_2(void){
+		
+			P1_1 = ~(P1_1);
+}
+
+void Task_3(void){
+		
+			P1_2 = ~(P1_2);
+}
+
+
+void Event(void(*Event_Tbl)(void)){
+	
+	while(*Event_Tbl != NULL){
+		(*Event_Tbl)();
+		*Event_Tbl++;
+	}
+}
+
+/* Task_1 is Function Name */
+/* &Task_1 - This going to the address of Task_1 function */
